@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Class Hierarchy</name>
+	<description>Contains a class hierarchy</description>
+	<type>
+		<name>sample.SubClass1</name>
+		<superclass>sample.SuperClassA</superclass>
+		<superclass>sample.SuperClassB</superclass>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+	<name>sample.SubClass2</name>
+		<superclass>sample.SuperClassD</superclass>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample.SuperClassA</name>
+		<superclass>sample.SuperClassC</superclass>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample.SuperClassB</name>
+		<property>public</property>
+		<property>class</property>
+		<property>abstract</property>
+	</type>
+	<type>
+		<name>sample.SuperClassC</name>
+		<superclass>sample.SuperClassD</superclass>
+		<property>public</property>
+		<property>class</property>
+		<property>abstract</property>
+	</type>
+	<type>
+		<name>sample.SuperClassD</name>
+		<superinterface>sample.InterfaceA</superinterface>
+		<property>public</property>
+		<property>class</property>
+		<property>abstract</property>
+	</type>
+	<type>
+		<name>sample.InterfaceA</name>
+		<property>public</property>
+		<property>interface</property>
+	</type>
+</project>

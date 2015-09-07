@@ -1,0 +1,18 @@
+since 1.2.6
+	* Preparing for a new Valtech Quality Suite version
+	* new timoutMinutes option to stop counting cycles after few hours
+
+since 1.2.5
+	* tangle score: The new tangle score metric tells you how tangled the code is. It is computed much faster
+	than a common cycle analysis run. 
+
+since 1.2.4
+	* release notes added
+	* fixed DPM-146 (external compilation units got cumulated under a compilation unit called 'no_compilation_unit')
+	* dep maven plugin selftest included in core
+	* simple XML writer added
+	
+since 1.2.0
+	* new CCD algorithm
+	* rseult template is auto-generated from core-jar now
+	* fixed a bug with detail/summary tab opening in background

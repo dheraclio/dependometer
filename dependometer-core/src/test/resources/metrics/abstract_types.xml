@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Abstract Types</name>
+	<description>Contains abstract types</description>
+	<type>
+		<name>sample.SimpleClass</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample.SimpleInterfaceA</name>
+		<property>public</property>
+		<property>interface</property>
+	</type>
+	<type>
+		<name>sample.AbstractClass</name>
+		<property>abstract</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample.AbstractClassWithInterface</name>
+		<property>abstract</property>
+		<property>class</property>
+		<depends-on>sample.SimpleInterfaceA</depends-on>
+	</type>
+</project>

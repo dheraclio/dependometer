@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject One Class</name>
+	<description>Contains 7 classes in a balanced binary tree, CCD= (n+1)log(n+1)-n = 17</description>
+	<type>
+		<name>sample1.ClassA</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample2.ClassB</depends-on>
+		<depends-on>sample2.ClassC</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassB</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample3.ClassD</depends-on>
+		<depends-on>sample3.ClassE</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassC</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample3.ClassF</depends-on>
+		<depends-on>sample3.ClassG</depends-on>
+	</type>
+		<type>
+		<name>sample3.ClassD</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample3.ClassE</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample3.ClassF</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+		<type>
+		<name>sample3.ClassG</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

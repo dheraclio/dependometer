@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject</name>
+	<description>This is a test.</description>
+	<type>
+		<name>com.valtech.source.project.domain.IEntity</name>
+		<property>public</property>
+		<property>interface</property>
+	</type>
+	<type>
+		<name>com.valtech.source.project.domain.AbstractEntity</name>
+		<property>public</property>
+		<property>class</property>
+		<property>abstract</property>
+	</type>
+	<type>
+		<name>com.valtech.source.project.domain.Employee</name>
+		<superclass>com.valtech.source.project.domain.AbstractEntity</superclass>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>com.valtech.source.project.domain.Adresse
+		</depends-on>
+	</type>
+	<type>
+		<name>com.valtech.source.project.domain.Adresse</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>com.valtech.source.project.business.IService</name>
+		<property>public</property>
+		<property>interface</property>
+		<depends-on>com.valtech.source.project.domain.Employee
+		</depends-on>
+	</type>
+
+	<type>
+		<name>com.valtech.source.project.business.Service</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>com.valtech.source.project.domain.Employee
+		</depends-on>
+	</type>
+</project>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project SYSTEM "Configuration.dtd"> 
+
+<!-- Test to verify the correct identification of dependencies that are established via enums.
+The packages involved are enums.one and
+enums.two.
+
+Expected Results:
+1 Dependency (internal package) from Brand to Motorbikes
+2 Dependencies (internal type) from Brand to Brand.Names
+
+1 Dependency from Brand.Names to Cars
+1 Dependency from Brand.Names to Motorbikes
+
+2 Dependencies (internal compilation unit) from Cars to Brand
+2 Dependencies from Cars to Brand.Names
+
+2 Dependencies (internal package) from Motorbikes to Brand
+2 Dependencies from Motorbikes to Brand.Names
+-->
+
+<!-- 
+	name 
+		the project name appears in the reports
+	numberOfCyclesFeedbackOnConsole (default = "1")
+		Every time the configured number of cycles is reached you get an extra warning in your shell
+	numberOfCycleAnalysisProgressFeedbackOnConsole (default = "1")
+		Every time the remaining number of nodes was accordingly reduced you get an extra info in your shell
+	checkLayerDependencies (default = "true")
+	checkSubsystemDependencies (default = "true")
+		"true"	all dependencies are checked against the allowed dependencies (depends-upon node)
+		"false" no dependency check
+	checkPackageDependencies (default = "true")
+		"true" 	all package dependencies are checked against the allowed dependencies (only packages are checked that have a package description)
+		"false" no dependency check
+	cumulateLayerDependencies (default = "true")
+	cumulateSubsystemDependencies (default = "true")
+	cumulatePackageDependencies (default = "true")
+	cumulateCompilationUnitDependencies (default = "true")
+	cumulateTypeDependencies (default = "true")
+		"true"	cumulate dependencies
+		"false" no cumulation
+	maxLayerCycles (default = "0")            		
+	maxSubsystemCycles (default = "0")      		
+	maxPackageCycles (default = "0")          		
+	maxCompilationUnitCycles (default = "0")  		
+	maxTypeCycles (default = "0")             		
+		Configure the cycle analysis behavior to avoid an endlessly running process. As an alternativ you can start the
+		dependometer with the command 'java -jar dependomter.jar -file <your configuration>' and terminate the analyis when
+		ever you want with 'ctrl-c' in the shell. This is possible past the point where in the shell the message 'Terminate
+		running analysis with 'ctrl-c'!' appears. Past this point you have also a valid html output. Only the cycle analyis
+		output gets updated. With a corresponding refresh in your browser you can see the updated information.   
+		"-2" 	no analysis
+		"-1" 	cycle existence check
+		"0"	like "-1" plus detailed cycle participation (which elements participate in cycles?) and levelization
+		">0"	like 0" but with the provided upper limit for detected cycles (stops if 'n' cycles are reached)
+-->
+<project 
+	name											= "Test: Enums without architecture definition" 
+	numberOfCyclesFeedbackOnConsole 				= "1"
+	numberOfCycleAnalysisProgressFeedbackOnConsole 	= "1"
+	checkLayerDependencies							= "false"
+	checkSubsystemDependencies 						= "false"
+	checkPackageDependencies 						= "false"
+	cumulateLayerDependencies 						= "false"
+	cumulateSubsystemDependencies 					= "false"
+	cumulatePackageDependencies 					= "true"
+	cumulateCompilationUnitDependencies 			= "true"
+	cumulateTypeDependencies 						= "true"
+	maxLayerCycles             						= "0"
+	maxSubsystemCycles         						= "0"
+	maxPackageCycles           						= "0"
+	maxCompilationUnitCycles   						= "0"
+	maxTypeCycles              						= "0"
+>
+    <!-- DIRECTORIES -->
+    <input dir="."/>
+
+    <!-- INPUT PACKAGE FILTER -->
+    <include-package name=".*"/>
+
+    <!-- OUTPUT LISTENER -->
+    <listener class="com.valtech.source.dependometer.ui.console.output.HtmlWriter" args="./results"/>
+    <listener class="com.valtech.source.dependometer.ui.console.output.CsvWriter" args="./results/summary.csv"/>
+    <listener class="com.valtech.source.dependometer.ui.console.output.DetailedCsvWriter" args="./results/summary-detailed.csv"/>
+    <!-- configure the detail level via an additional argument: layer, subsystem, package, compilation-unit, type (default = compilation-unit) -->
+    <listener class="com.valtech.source.dependometer.ui.console.output.ViolationReportCsvWriter" args="./results/violation-report.csv type"/>
+    <!-- configure the detail level via an additional argument: layer, subsystem, package, compilation-unit, type (default = package) -->
+    <listener class="com.valtech.source.dependometer.ui.console.output.CycleParticipationReportCsvWriter" args="./results/cycle-participation-report.csv type"/>
+    <listener class="com.valtech.source.dependometer.ui.console.output.TypeDependencyCsvWriter" args="./results/typedependencies.csv"/>
+
+	<!-- ASSERTIONS -->
+	<assertion pattern="assert"/>
+	
+	<!-- SKIP -->
+	<skip prefix="java\..*"/>
+
+</project>

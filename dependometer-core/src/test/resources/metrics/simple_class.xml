@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject One Class</name>
+	<description>Contains only one simple class</description>
+	<type>
+		<name>sample.SimpleClass</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

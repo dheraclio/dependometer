@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Package internal/external dependencies</name>
+	<description>Contains package internal and package external dependencies</description>
+	<type>
+		<name>sample1.SimpleClass1</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample2.AnotherClass1</depends-on>
+		<depends-on>sample1.SimpleClass3</depends-on>
+	</type>
+	<type>
+		<name>sample1.SimpleClass2</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass3</depends-on>
+	</type>
+	<type>
+		<name>sample1.SimpleClass3</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass1</depends-on>
+	</type>
+	<type>
+		<name>sample1.SimpleClass4</name>
+		<property>protected</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass1</depends-on>
+		<depends-on>sample2.AnotherClass1</depends-on>
+	</type>
+	<type>
+		<name>sample2.AnotherClass1</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass1</depends-on>
+	</type>
+	<type>
+		<name>sample2.AnotherClass2</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass1</depends-on>
+	</type>
+	<type>
+		<name>sample2.AnotherClass2$Nested1</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.SimpleClass1</depends-on>
+	</type>
+</project>

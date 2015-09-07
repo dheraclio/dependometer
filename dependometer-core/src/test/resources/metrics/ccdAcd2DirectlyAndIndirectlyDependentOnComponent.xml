@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject One Class</name>
+	<description>Contains four connected classes without cycle (directed depdency graph) and one unconnected class, CCD=11</description>
+	<type>
+		<name>sample1.ClassA</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample2.ClassB</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassB</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample3.ClassC</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample1.ClassA</depends-on>
+	</type>
+	<type>
+		<name>sample3.ClassD</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>sample3.ClassC</depends-on>
+		<depends-on>sample1.ClassA</depends-on>
+	</type>
+	<type>
+		<name>sample3.ClassE</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

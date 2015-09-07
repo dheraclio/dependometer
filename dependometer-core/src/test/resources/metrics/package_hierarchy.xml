@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Package Hierarchy</name>
+	<description>Contains package hierarchy</description>
+	<type>
+		<name>sample1.SimpleClass1</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample2.SimpleClass2</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample2.sub1.SimpleClass3</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+		<type>
+		<name>sample2.sub2.subsub1.SimpleClass4</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	
+</project>
