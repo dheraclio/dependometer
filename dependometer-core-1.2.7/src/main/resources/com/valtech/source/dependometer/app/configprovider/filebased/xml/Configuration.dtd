@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT input EMPTY>
+<!ATTLIST input dir CDATA #REQUIRED>
+
+<!ELEMENT system-include-path EMPTY>
+<!ATTLIST system-include-path dir CDATA #REQUIRED>
+
+<!ELEMENT system-define EMPTY>
+<!ATTLIST system-define
+	symbol CDATA #REQUIRED
+	macro CDATA #REQUIRED
+>
+
+<!ELEMENT depends-upon EMPTY>
+<!ATTLIST depends-upon name NMTOKEN #REQUIRED>
+
+<!ELEMENT ignore EMPTY>
+<!ATTLIST ignore
+	fromType CDATA #REQUIRED
+	toType CDATA #REQUIRED
+>
+
+<!ELEMENT include-package EMPTY>
+<!ATTLIST include-package name CDATA #REQUIRED>
+
+<!ELEMENT exclude-package EMPTY>
+<!ATTLIST exclude-package name CDATA #REQUIRED>
+
+<!ELEMENT exclude-compilation-unit EMPTY>
+<!ATTLIST exclude-compilation-unit name CDATA #REQUIRED>
+
+<!ELEMENT exclude-subsystem EMPTY>
+<!ATTLIST exclude-subsystem name CDATA #REQUIRED>
+<!ELEMENT vertical-slices (exclude-subsystem*)>
+<!ATTLIST vertical-slices checkDependencies NMTOKEN #IMPLIED>
+<!ATTLIST vertical-slices cumulateDependencies NMTOKEN #IMPLIED>
+<!ATTLIST vertical-slices maxCycles NMTOKEN #IMPLIED>
+
+<!ELEMENT assertion EMPTY>
+<!ATTLIST assertion pattern CDATA #REQUIRED>
+
+<!ELEMENT lower-threshold EMPTY>
+<!ATTLIST lower-threshold name NMTOKEN #REQUIRED>
+<!ATTLIST lower-threshold value NMTOKEN #REQUIRED>
+
+<!ELEMENT upper-threshold EMPTY>
+<!ATTLIST upper-threshold name NMTOKEN #REQUIRED>
+<!ATTLIST upper-threshold value NMTOKEN #REQUIRED>
+
+<!ELEMENT layer (description?,subsystem+,depends-upon*)>
+<!ATTLIST layer name NMTOKEN #REQUIRED>
+
+<!ELEMENT listener EMPTY>
+<!ATTLIST listener
+	class NMTOKEN #REQUIRED
+	args CDATA #REQUIRED
+>
+
+<!ELEMENT project (input+,system-include-path*, system-define*,include-package+,exclude-package*,exclude-compilation-unit*,vertical-slices?,listener+,assertion?,ignore*,skip*,refactor*,lower-threshold*,upper-threshold*,layer*)>
+<!ATTLIST project
+	name CDATA #REQUIRED
+    numberOfCycleAnalysisProgressFeedbackOnConsole NMTOKEN #IMPLIED
+	numberOfCyclesFeedbackOnConsole NMTOKEN #IMPLIED
+	checkLayerDependencies NMTOKEN #IMPLIED
+	checkSubsystemDependencies NMTOKEN #IMPLIED
+	checkPackageDependencies NMTOKEN #IMPLIED
+	cumulateLayerDependencies NMTOKEN #IMPLIED
+	cumulateSubsystemDependencies NMTOKEN #IMPLIED
+	cumulatePackageDependencies NMTOKEN #IMPLIED
+	cumulateCompilationUnitDependencies NMTOKEN #IMPLIED
+	cumulateTypeDependencies NMTOKEN #IMPLIED
+	ignorePhysicalStructure NMTOKEN #IMPLIED
+	maxCompilationUnitCycles NMTOKEN #IMPLIED
+	maxLayerCycles NMTOKEN #IMPLIED
+	maxSubsystemCycles NMTOKEN #IMPLIED
+	maxPackageCycles NMTOKEN #IMPLIED
+	maxTypeCycles NMTOKEN #IMPLIED
+	fileEncoding NMTOKEN #IMPLIED
+	timeoutMinutes NMTOKEN #IMPLIED
+>
+
+<!ELEMENT refactor EMPTY>
+<!ATTLIST refactor
+	compilationUnit CDATA #REQUIRED
+	toPackage NMTOKEN #REQUIRED
+>
+
+<!ELEMENT skip EMPTY>
+<!ATTLIST skip prefix CDATA #REQUIRED>
+
+<!ELEMENT subsystem (description?,include-package+,exclude-package*,depends-upon*)>
+<!ATTLIST subsystem name NMTOKEN #REQUIRED>
+
+<!ELEMENT description (#PCDATA)>
+
+

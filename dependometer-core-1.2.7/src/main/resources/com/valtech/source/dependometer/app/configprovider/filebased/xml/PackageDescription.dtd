@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT dependsUpon EMPTY>
+<!ATTLIST dependsUpon package NMTOKEN #REQUIRED>
+<!ELEMENT package (description?,dependsUpon*)>
+<!ATTLIST package name NMTOKEN #REQUIRED>
+<!ELEMENT description (#PCDATA)>
+
+

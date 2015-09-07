@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE testmetrics SYSTEM "../testconfig.dtd">
+
+<testmetrics> <!-- see dependometer-cpp for more examples -->
+	<pagemetrics>
+		<scanfile>project.html</scanfile>
+		<metric>
+			<name>number of project internal types</name>
+			<value>4</value>
+		</metric>
+
+		<metric>
+			<name>number of project internal compilation units</name>
+			<value>3</value>
+		</metric>
+	</pagemetrics>
+
+	<pagemetrics>
+
+		<scanfile>type-metrics.html</scanfile>
+
+		<!-- check type dependencies related to annotations -->
+		<metric>
+			<tablename>number of outgoing dependencies</tablename>
+			<name>enums.one.Brand$Names</name>
+			<value>2</value>
+
+			<tablename>number of outgoing dependencies</tablename>
+			<name>enums.one.Cars</name>
+			<value>2</value>
+		</metric>
+
+	</pagemetrics>
+</testmetrics>

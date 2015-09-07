@@ -1,0 +1,297 @@
+since 1.2.5
+
+since 1.2.4
+	* tangle score: The new tangle score metric tells you how tangled the code is. It is computed much faster
+	than a common cycle analysis run. 
+
+since 1.2.3
+	* fix for no_compilation_unit bug (external subsystems, etc.)
+
+since 1.2
+	* internal refactorings, test / source code quality improvements, etc.
+	* result template is built form core-jar now
+	* bugfix for java source file parser (DPM-137)
+	* simple built-in XMLWriter writes metrics and cycles now (additional output listener)
+	* test + documentation
+	* CCD algorithm fix
+
+since 1.19
+	* splitting in core and language-dependent dependometer projects
+	* java and cpp analysis possible
+	* maven build process
+
+	
+versions before 1.2:
+	
+*** 1.01 ***
+
+- Initial version in sourceforge
+
+*** 1.02 ***
+
+- XML output size reduced
+- Length of dependency element filenames (html) reduced - constant filename length
+  due to numerical names (id)
+- Fully qualified name for all elements in the html presentation added (dependency view)
+- Jar/Zip processing implemented
+- Report 'not parsed' packages in the shell
+- Usage of <ClassName>.class recognized
+- Report duplicated class and source files
+- 'Getting started' section provided
+- 'dependometer_en.pdf' provided
+- Generalized 'input' node added - replaces the 'sourceRoot' and 'classRoot' nodes
+- Naming of nodes unified - 'includePackage' replaced by 'include-package', 'dependsUpon'
+  replaced by 'depends-upon'
+- Java2Html 1.2 replaced with version 1.3.1
+- Html presentation extended with an explicit 'violations' page for all elements
+
+CAUTION: You have to migrate your 'old' xml configuration file
+
+- Replace the 'sourceRoot' and 'classRoot' node names with 'input'
+- Replace the 'includePackage' node name with 'include-package'
+- Replace the 'dependsUpon' node name with 'depends-upon'
+
+*** 1.03 ***
+
+- XML output size reduced.
+- Number of type relations added to html output for cycles and cycle participations.
+- Html presentation extended with an explicit 'not implemented' section for subsystems.
+- Html presentation extended with new metrics index 'contain public types but no package
+  external relations exist' for compilation units - hint for visibility reduction.
+- Error fixed in assertion usage detection.
+- Error fixed in ignore node usage. Ignoring dependencies only worked for dependencies detected.
+  from class file parsing - now also implemented for dependencies detected from source file parsing.
+- Html presentation extended with an explicit 'allowed dependencies' page for layers, subsystems
+  and packages.
+- Metrics calculation behavior changed. Project, layer and subsystem metrics now only based on
+  'parsed' elements. No need to get rid of all 'not parsed' elements to get accurate metrics.
+- 'exclude-compilation-unit' node added. It is now possible to exclude certain compilation units
+  matching given patterns.
+- NOC (number of children) metric added.
+- The metrics 'Ratio between external relations and types' and 'Ratio between internal and
+  external relations' were removed.
+- Saxon 6.5.2 replaced with version 6.5.3.
+
+*** 1.1 ***
+
+- Analysis concept changed. In the first step only the dependencies get analyzed, metrics
+  are calculated, threshold violations and the architecture constraints (i.e the defined
+  dependencies) are checked. After the first step a fully browseable output was written and
+  can already be accessed with the browser.
+  In the second step all cycle-relevant issues get analyzed - cycles, cycle participation
+  and levelization. Updating the browser at any time will show the current cycle analysis
+  details. The second step may also be terminated in the shell with 'ctrl-c' (see the
+  section 'Using the 'ctrl-c' feature of the Dependometer' for details). Updating the
+  browser after having terminated the second step will also show the cycle participation
+  and levelization details collected until the termination point.
+- Reduced cycle analysis settings (See the 'dep.xml' for details).
+- HtmlWriter provided. It replaces the TextWriter and the XMLWriter - they are no longer
+  supported (for this reason the Saxon was removed from the distribution).
+- The notion of 'project internal' and 'project external' elements was introduced. It replaces
+  and enhances the idea of 'parsed' and 'not parsed' elements (See the section 'Project internal
+  and external elements' for details). 'Not parsed' elements (again) included as 'project external'
+  in metrics index.
+- The threshold evaluation concept was changed and slightly enhanced. Due to the volatile
+  nature of the thresholds (i.e. thresholds has been frequently altered, removed or added)
+  The user no longer receives exceptions on encountered not supported thresholds. Now all
+  thresholds are shown in the Html report with all relevant information (name, type, threshold,
+  supported, analyzed, value). Furthermore the information 'analyzed (yes/no)' now gets correctly
+  displayed, which did not work in previous releases (e.g. if the cycle detection for types is
+  disabled it is not possible to evaluate the corresponding threshold - it does not get analyzed).
+- An 'inner dependencies' section was added to the html output. The section shows the 'inner
+  dependencies' of the elements (e.g. for a given layer its inner 'subsystem' dependencies).
+- Html Levelization view enhanced - elements appear under its level number. A Link to the
+  levelization view was directly included in the navigation bar.
+- Elements that are not fully analyzed during cycle analysis and elements that participate directly
+  in cycles (i.e. elements that form part of a cycle in contrast to elements that only reference these
+  elements) are reported in the cycle participation view. The levelization view is calculated based on
+  the remaining elements.
+- Description node added for layer, subsystem and package definitions.
+- Package filter is shown for subsystems in html output.
+- Html output extended with element attributes ('internal'/'external', 'accessible'/'not-accessible',
+ 'abstract'/'concrete' and 'implemented'/'not-implemented').
+- CsvWriter provided which stores the threshold information and configuration settings in
+  a csv file.
+- DetailedCsvWriter provided which stores the threshold information, number of detected cycles
+  and configuration settings in a csv file.
+- Xerces no longer included. The SAX parser provided by the JDK 1.4 is used.
+- Java2Html was removed - the source files are shown in the browser in plain text.
+- The log4j distribution is no longer included - only the required jar.
+- The index.html was moved from 'analyze/dependometer/index.html' to 'analyze/index.thml'.
+
+CAUTION: You have to migrate your 'old' xml configuration file
+
+- Replace the XMLWriter listener entry with the following line:
+  <listener class="de.valtech.dependometer.ui.console.output.HtmlWriter" args="./analyze/dependometer"/>
+- Remove the TextWriter listener entry.
+
+HINT: You should update your threshold definitions
+
+- See the 'dep.xml' for defined thresholds or use the ant target 'query-id-list' for a list of
+  supported thresholds with according descriptions.
+
+*** 1.11 ***
+
+- Memory consumption reduced during cycle analysis.
+- Error fixed. Description node for layers, subsystems and package definitions starting with a line break
+  now work properly.
+- Wrong query id description corrected.
+- Html output slightly enhanced.
+- Error fixed. Elements directly participating in cycles now get reported completely. In the previous
+  release the last element from a detected cycle was not considered.
+- The refactoring node now supports regular expressions for the compilationUnit attribute.
+- Added exlude package node - the matched set of packages may be reduced by specifying n exclude patterns.
+- Html output extended with element attribute 'refactored' - if a compilation unit was refactored via
+  the refactoring node, the 'refactored' attribute is set. The 'refactored' attribute is also set for
+  the contained types and a (possibly) new 'created' package (i.e. if compilation unit(s) get moved to a
+  not already existing package)
+- The source link of refactored compilation units now works.
+
+*** 1.12 ***
+
+- Error fixed. In some cases dependencies created through local variables were not recognized.
+- Error fixed. Instability calculation for elements without efferent dependencies now works.
+- Package and compilation unit filter info for project added to html output.
+- Vertical slices introduced. See the dep.xml of the dependometer on how to activate the
+  optional analysis. See the 'Vertical-slices' section in this document.
+- Component dependency (depends upon) for compilation-units added in afferent dependencies
+  section of html output. See the 'Average component dependency' section in this document.
+- 'Average number of assertions per project internal class' metric added for layers,
+  subsystems and packages.
+- Dependency check possibilities reduced - the 'inner' setting for subsystems is no longer
+  supported. 'all' and 'none' were renamed to 'true' and 'false'.
+- Cumulation of dependencies now configurable with extra attributes.
+- All project attributes (except 'name') are now optional. For default values see the 'dep.xml'
+  of the dependometer.
+- ViolationReportCsvWriter introduced (writes all forbidden dependencies to a csv file).
+- Information to 'thresholds' link added in html output. '!' means that there are violations.
+  '?' means that there are unsupported or not analyzed thresholds.
+
+CAUTION: Possibly you have to adjust your settings in the xml configuration file
+
+For the dependency check settings ...
+
+- Rename 'all' to 'true'.
+- Rename 'none' to 'false'.
+- Replace 'inner' with 'true' or 'false' (inner is no longer supported).
+
+For the newly added 'cumulation of dependencies' attributes ...
+
+- The cumulation of dependencies is enabled (default) for all elements.
+- If you want to disable the cumulation for a specific element (e.g. type)
+  use 'cumulateTypeDependencies = "false"'.
+
+*** 1.13 ***
+
+- Error corrected. If 'checkSubsystemDependencies' is set to 'false' it is not possible
+  to turn on the dependency check for the vertical-slices. If the 'checkDependencies'
+  attribute is nonetheless set to 'true' it gets internally disabled.
+- Error corrected. In the html navigation bar now the cycle participation entry is
+  disabled during cycle analysis and the metrics entry does not disappear if cycle
+  detection is disabled.
+- Error corrected. Dependencies detection for java classes from the default package
+  now works.
+- Error corrected. Now all skipped class files from direct input get reported in the
+  'type definition provider' section in the html output.
+- ClassFileParser now ignores the 'synthetic' elements from a class file.
+- 'interface' metric added for types.
+- 'depth of interface inheritance' metric added for types
+- Skipped types are no longer included in calculation of depth of inheritance
+  (neither for class nor for interface inheritance).
+- 'number of children (NOC)' metric now gets also calculated for 'project external' types
+- Cycle analysis progress now gets reported in the shell.
+- Level analysis implementation now works without recursion - avoids stack overflow.
+- Memory consumption reduced during cycle analysis.
+
+*** 1.14 ***
+
+- Error corrected. If all elements participate in cycles the 'cycle-participation'
+  link in the html output was disabled. Now it gets correctly enabled at the end of
+  the analysis. Only the 'levelization' link is disabled (there are no levelizable
+  elements).
+- Error corrected. The archive reader now uses a foward slash as path separator.
+- Error corrected. If a 'check<Element>Dependencies' (where 'Element' can be 'Layer',
+  'Subsystem' or 'Package') attribute was set to 'false' the 'violations' link was
+  disabled. Now if violations exist the link stays enabled.
+  Example: 'checkLayerDependencies' is set to 'true', 'checkSubsystemDependencies'
+  and 'checkPackageDependencies' are set to 'false'. The developer still wants to
+  see the violations on every level produced by the restrictions of defined layer
+  dependencies.
+- Error corrected. If a duplicated class file was found and skipped because of the
+  package filter it appeared twice in the 'type definition provider' section in the
+  html report.
+- The 'exclude-package' node now may also be used in the 'subsystem' node to exlude
+  packages from the packages matched by the 'include-node' group.
+- The 'type definition provider' section in the html output now contains a list of missing
+  source files.
+- If an archive (zip or jar) with class files can not be read it gets reported and the
+  dependometer continues its analysis.
+- 'project internal' metric added for all elements.
+- 'afferent (incoming) dependencies - project external' metric added for all elements.
+- 'afferent (incoming) coupling (Ca) - project external' metric added for layers, subsystems
+  and packages.
+- CycleParticipationReportCsvWriter introduced (writes the cycle participations to a csv file).
+- TypeDependencyCsvWriter introduced (writes all type dependencies into a csv file).
+
+*** 1.15 ***
+
+- Error corrected. The calculation of the 'instability (I)' metric now works correctly for
+  elements that have 0 outgoing and/or 0 incoming dependencies.
+- Error corrected. Now a carriage return without a line feed does not result in an assertion
+  error during parsing of source files.
+- Error corrected. Now long import statements wrapped by a beautifier (e.g. Eclipse) do
+  not result in an assertion error during parsing of source files.
+- Project metric 'percentage of layers with relational cohesion >= 1.0' added.
+- Project metric 'percentage of subsystems with relational cohesion >= 1.0' added.
+- Project metric 'percentage of vertical slices with relational cohesion >= 1.0' added.
+- Project threshold 'Project.PercentageOfLayersWithRcNotLessThanOne' added.
+- Project threshold 'Project.PercentageOfSubsystemsWithRcNotLessThanOne' added.
+- Project threshold 'Project.PercentageOfVerticalSlicesWithRcNotLessThanOne' added.
+- Refactoring hint 'more package external than internal relations exist' now only considers
+  project internal packages.
+- All metrics now have a link to a description.
+- The dependometer version info in the html output now is a link to the README.
+
+*** 1.16 ***
+
+- If a package name is matched more than one time by a subsystem package filter an exception
+  is thrown and the subsystems are reported.
+- Type metric 'nested' added.
+- Type metric 'extendable' added.
+- All threshold relevant metrics added to project metrics.
+- Project metrics related to containing element numbers added.
+- The 'skip' node now uses regular expressions to skip dependencies to project external
+  types.
+- Skipped dependencies to project external types configured via the 'skip' node now get
+  reported in the html output in the 'manipulated dependencies' section.
+- If a 'skip' node manipulates dependencies to project internal types an exception is
+  thrown. The 'skip' node must only be used for dependencies to external types.
+- External packages are no longer reported in the shell. See the 'packages' section for this
+  info in the html output.
+
+CAUTION: You have to adjust your 'skip' settings in the xml configuration file. If you
+         want to skip all dependencies to types in subpackages of 'java' now you have to
+         use 'java\..*' (previously: 'java.'). See the dependometer dep.xml file for details.
+
+*** 1.17 ***
+
+- Java 5 Feature Support Added. Class and Source file parsing has been adapted according to
+  support all new Java 5 features like annotations, generic types, enum types etc.
+- ClassFileParser reworked. The Java class file parser is now based on the ASM bytecode
+  manipulation library which offers built-in support for annotations, signature handling etc.
+
+*** 1.18 ***
+- Fixed a bug in the handling of signatures and descriptors concerning the usage of generics
+  in class ClassFileParser. Now the templated class as well as its type argument get added
+  as reference.
+- Fixed the handling of inner classes within a signature, which names or not fully qualified
+- Fixed the filtering of references to inner our outer classes
+
+*** 1.19 ***
+- Speed up cycle analysis by use of a fast topological sort as partitioning guide
+and a Eight-Queens-Quest-inspired backtracker as cycle searcher.
+Time and memory consumption is now roughly linear to
+(node count multiplied by graph order).
+- limit useless file overwrites
+- Fixed a bug with several excludes
+- Correction in CCD/

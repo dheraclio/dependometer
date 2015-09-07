@@ -1,0 +1,257 @@
+/*
+ *     Valtech Public L I C E N S E  (VPL) 1.0.2
+ *
+ *     Valtech Quality Suite (VQS)
+ *     Copyright (C) 2004-2005 Valtech GmbH
+ *
+ *     VQS software is made available free of charge under the
+ *     following conditions.
+ *
+ *     Redistribution and use in source and binary forms, with or without
+ *     modification, are permitted provided that the following conditions are met:
+ *
+ *     1.1. All copies and redistributions of source code must retain the above
+ *     copyright notice, this list of conditions and the following disclaimer.
+ *
+ *     1.2. Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *
+ *     1.3. The end-user documentation included with the redistribution, if any,
+ *     must include the following acknowledgment:
+ *     This product includes software developed by Valtech http://www.valtech.de/.
+ *     This acknowledgement must appear in the software itself, if and wherever
+ *     such third-party acknowledgments normally appear.
+ *
+ *     1.4. The names "Valtech" and "Valtech Quality Suite" must not be used to endorse or
+ *     promote products derived from this software without prior written permission.
+ *     For written permission, please contact kmc@valtech.de <mailto:kmc@valtech.de>
+ *
+ *     BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE IT IS PROVIDED "AS IS" AND
+ *     ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *     IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *     ARE DISCLAIMED. IN NO EVENT SHALL VALTECH GMBH OR ITS CONTRIBUTORS BE LIABLE
+ *     FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ *     DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ *     CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ *     OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *     LEGAL LIABILITY PROVIDED UNDER GERMAN LAW FOR INTENDED DAMAGES, BAD FAITH OR
+ *     GROSS NEGLIGENCE REMAINS UNAFFECTED.
+ */
+
+body, p, td { font-family: Tahoma, Arial, Helvetica; font-size: 13px; }
+a { color: #333333; text-decoration: none; font-weight: bold; }
+a:hover { text-decoration: underline; }
+img { border: 0; }
+
+h1 { font-size: 22px; font-weight: bold; background-color: #eeeeee; padding: 2px 5px 2px 5px; border: 1px solid #000000; }
+h2 { font-size: 17px; font-weight: bold; background-color: #eeeeee; padding: 2px 5px 2px 5px; border: 1px solid #cccccc; margin: 25px 0px 15px 0px; }
+h3 { font-size: 14px; font-weight: bold; margin: 15px 0px 8px 0px; }
+hr { border: 0px; border-top: solid 1px #cccccc; border-bottom: transparent; margin: 15px 0px 10px 0px; }
+
+table { width: 100%; margin: 1px; border: 1px solid #cccccc; border-spacing: 0; border-collapse: collapse; }
+table tr th { padding: 3px 5px 3px 5px; text-align: left; border-bottom: 1px solid #cccccc; }
+table tr td { padding: 2px 5px 2px 5px; }
+table tr.even td, .vqstable tr th { background-color: #eeeeee; }
+table tr.odd td { background-color: #fdfdfd; }
+table tr.sum td { background-color: #eeeeee; font-weight: bold; border-top: 1px solid #cccccc; }
+
+.file-summary .right { width: 75px; text-align: right; }
+.file-details .line { width: 50px; }
+.file-details .severity { width: 100px; }
+
+header { background-color: #eeeeee; margin: 0; padding: 10px; }
+header #logo { border: 1px solid #000000; background-color: #ffffff; padding: 1px 7px 1px 7px; }
+header #meta { float: right; padding: 10px 10px 0px 0px; font-size: 15px; }
+header #meta #meta-vqs { padding-top: 3px; }
+navigation { background-color: #eeeeee; padding: 0px 10px 10px 10px}
+navigation .plugin-result-category { margin: 0px 0px 15px 0px; padding: 5px 5px 5px 5px; background-color: #ffffff; border: 1px solid #000000; }
+navigation .plugin-result-category .plugin-result-category-name { font-weight: bold; font-size: 16px; padding: 0px 0px 3px 0px; }
+navigation .plugin-result-category .plugin-result-category-value { font-weight: bold; font-size: 12px; padding: 0px }
+start table#tools { width: 100%; border-spacing: 0; }
+start table#tools td { padding: 6px 0px 10px 0px; vertical-align: top; }
+start table#tools td.left { width: 125px; padding-right: 5px; }
+summary .view .icon { width: 20px; text-align: left; padding-left: 10px; }
+summary .view .value { width: 75px; text-align: right; }
+summary .view .bound { width: 75px; text-align: right; }
+summary .view .difference { width: 90px; text-align: right; }
+summary .view .evaluation { padding-left: 10px; width: 125px; }
+summary .view .evaluation .okay { color: #00aa00; }
+summary .view .evaluation .error { color: #ff0000; font-weight: bold; }
+summary .view .evaluation .not-checked { color: #777777; }
+
+
+
+/* ========================================================================== */
+/* ===  Java2HTML  ========================================================== */
+/* ========================================================================== */
+
+#LN { color: #BBBBBB;  background-color: #FFFFFF; }
+#Classes PRE { color: #abcdef; }
+#CharacerLiteral { color: #FF00FF; }
+#StringLiteral { color: #FF00FF; }
+#SingleLineComment { color: #008000; }
+#FormalComment { color: #008000; }
+#MultiLineComment { color: #008000; }
+#IntegerLiteral { color: #000000; }
+#DecimalLiteral { color: #000000; }
+#HexLiteral { color: #000000; }
+#OctalLiteral { color: #000000; }
+#FloatPointLiteral { color: #000000; }
+#Abstract { color: #0000FF; font-weight: bold; }
+#Boolean { color: #0000FF; font-weight: bold; }
+#Break { color: #0000FF; font-weight: bold; }
+#Byte { color: #0000FF; font-weight: bold; }
+#Case { color: #0000FF; font-weight: bold; }
+#Catch { color: #0000FF; font-weight: bold; }
+#Char { color: #0000FF; font-weight: bold; }
+#Class { color: #0000FF; font-weight: bold; }
+#Const { color: #0000FF; font-weight: bold; }
+#Continue { color: #0000FF; font-weight: bold; }
+#Default { color: #0000FF; font-weight: bold; }
+#Do { color: #0000FF; font-weight: bold; }
+#Double { color: #0000FF; font-weight: bold; }
+#Else { color: #0000FF; font-weight: bold; }
+#Extends { color: #0000FF; font-weight: bold; }
+#False { color: #0000FF; font-weight: bold; }
+#Final { color: #0000FF; font-weight: bold; }
+#Finally { color: #0000FF; font-weight: bold; }
+#Float { color: #0000FF; font-weight: bold; }
+#For { color: #0000FF; font-weight: bold; }
+#Goto { color: #0000FF; font-weight: bold; }
+#If  { color: #0000FF; font-weight: bold; }
+#Implements { color: #0000FF; font-weight: bold; }
+#Import { color: #0000FF; font-weight: bold; }
+#InstanceOf { color: #0000FF; font-weight: bold; }
+#Int { color: #0000FF; font-weight: bold; }
+#Interface { color: #0000FF; font-weight: bold; }
+#Long { color: #0000FF; font-weight: bold; }
+#Native { color: #0000FF; font-weight: bold; }
+#New { color: #0000FF; font-weight: bold; }
+#Package { color: #0000FF; font-weight: bold; }
+#Private { color: #0000FF; font-weight: bold; }
+#Protected { color: #0000FF; font-weight: bold; }
+#Public { color: #0000FF; font-weight: bold; }
+#Return { color: #0000FF; font-weight: bold; }
+#Short { color: #0000FF; font-weight: bold; }
+#Static { color: #0000FF; font-weight: bold; }
+#Super { color: #0000FF; font-weight: bold; }
+#Switch { color: #0000FF; font-weight: bold; }
+#Synchronized { color: #0000FF; font-weight: bold; }
+#This { color: #0000FF; font-weight: bold; }
+#Throw { color: #0000FF; font-weight: bold; }
+#Throws { color: #0000FF; font-weight: bold; }
+#Transient { color: #0000FF; font-weight: bold; }
+#True { color: #0000FF; font-weight: bold; }
+#Try { color: #0000FF; font-weight: bold; }
+#Void { color: #0000FF; font-weight: bold; }
+#Volatile { color: #0000FF; font-weight: bold; }
+#While { color: #0000FF; font-weight: bold; }
+#StrictFP { color: #0000FF; font-weight: bold; }
+
+
+/* ========================================================================== */
+/* ===  JavaNCSS  ========================================================== */
+/* ========================================================================== */
+
+#javancss table td { vertical-align: middle; }
+#javancss table .left { width: 300px; }
+#javancss table .number { min-width: 40px; width: 40px; text-align: right; }
+#javancss table .icon { min-width: 25px; width: 25px; text-align: right; }
+#javancss table .classes { width: 60px; text-align: right; }
+#javancss table .functions { min-width: 70px; width: 70px; text-align: right; }
+#javancss table .ncss { min-width: 60px; width: 60px; text-align: right; }
+#javancss table .ccn { min-width: 60px; width: 60px; text-align: right; }
+#javancss table .total { text-align: right; }
+#javancss table .package { text-align: left; padding-left: 25px; }
+#javancss table .class { text-align: left; padding-left: 25px; }
+#javancss table .function { text-align: left; padding-left: 25px; overflow: hidden; font-size: 11px; }
+#javancss table.visualization td { padding: 2px 5px 2px 5px; }
+#javancss table.visualization .a { width: 60px; }
+#javancss table.visualization .b { width: 80px; text-align: right; }
+#javancss table.visualization .c { width: 80px; text-align: right; }
+#javancss table.visualization .d { padding-left: 10px; }
+#javancss table.visualization .d .inner-table { margin: 0; padding: 0; }
+
+
+/* ========================================================================== */
+/* ===  Findbugs  =========================================================== */
+/* ========================================================================== */
+
+#findbugs table.project .left { width: 125px; }
+#findbugs table.bugsummary .metric { width: 160px; }
+#findbugs table.bugsummary .total { width: 100px; text-align: right; }
+#findbugs table.bugsummary .density { width: 100px; text-align: right; }
+#findbugs table.summary .number { text-align: right; }
+#findbugs table.warning-table td { vertical-align: top; }
+#findbugs table.warning-table .code { width: 50px; }
+#findbugs table.warning-table tr:hover { background-color: #cccccc; }
+#findbugs table.warning-table tr:hover td { background: none; cursor: pointer; }
+
+
+/* ========================================================================== */
+/* ===  PMD ================================================================= */
+/* ========================================================================== */
+
+#pmd table.filelist .violations { text-align: right; }
+#pmd div.fileinfo { margin: -5px 0px 10px 0px; }
+#pmd table.filedetails .priority { width: 30px; min-width: 30px; }
+#pmd table.filedetails .beginline { width: 70px; min-width: 70px; text-align: right; padding-right: 20px; }
+#pmd table.filedetails .innerclass { width: 110px; min-width: 90px; padding-right: 20px; }
+#pmd table.filedetails .method { width: 200px; min-width: 150px; padding-right: 20px; }
+#pmd table.filedetails tr td { vertical-align: top; }
+#pmd table.filedetails tr td .content { text-align: center; padding: 1px 2px 1px 2px; }
+#pmd table.filedetails tr td.priority { padding: 1px 1px 1px 1px; }
+#pmd table.filedetails tr.p1 .content { background:#FF9999; }
+#pmd table.filedetails tr.p1 td { font-weight: bold; }
+#pmd table.filedetails tr.p2 .content { background:#FFCC66; }
+#pmd table.filedetails tr.p3 .content { background:#FFFF99; }
+#pmd table.filedetails tr.p4 .content { background:#99FF99; }
+#pmd table.filedetails tr.p5 .content { background:#9999FF; }
+#cpd table td { vertical-align: top; }
+#cpd .codefragment { font-family: Courier New, Courier, Monospaced; font-size: 12px; line-height: 1; border: 1px solid #cccccc; padding: 0px 10px 0px 10px; }
+
+
+/* ========================================================================== */
+/* ===  JDepend  ============================================================ */
+/* ========================================================================== */
+
+#jdepend .summary .classes { width: 70px; text-align: right; padding-left: 10px; }
+#jdepend .summary .couplings { width: 75px; text-align: right; padding-left: 10px; }
+#jdepend .summary .percent { width: 70px; text-align: right; padding-left: 10px; }
+#jdepend .package-details td { vertical-align: top; }
+#jdepend .package-details td.list-classes { font-size: 11px; }
+#jdepend .package-details td.a { width: 140px; min-width: 140px; }
+#jdepend .package-details td.d { width: 130px; min-width: 130px; }
+
+
+/* ========================================================================== */
+/* ===  Rats  =============================================================== */
+/* ========================================================================== */
+
+#rats .summary .left { width: 200px; }
+#rats .vulnerability .vulnerability-files .lines { width: 200px; }
+#rats .severity-High .vulnerability-severity { background-image: url(icons/small/warning.png); background-repeat: no-repeat; padding-left: 25px; color: #660000; font-weight: bold; }
+
+
+/* ========================================================================== */
+/* ===  cppncss  ============================================================ */
+/* ========================================================================== */
+
+#cppncss .files .functions { width: 60px; text-align: right; }
+#cppncss .files .ncss { width: 60px; text-align: right; }
+#cppncss .files .ccn { width: 60px; text-align: right; }
+#cppncss .functions .ncss { width: 60px; text-align: right; }
+#cppncss .functions .ccn { width: 60px; text-align: right; }
+
+
+/*  JUCA  */
+#directly       { background-color:#80FF80 }
+#indirectly     { background-color:#FFFF00 }
+#unknown      { background-color:#FF6060 }
+#ignored      { background-color:#CCCCCC; color:white }
+#abstract       { font-style:italic }
+#directly_overloaded  { background-color:#40C040 }
+#indirectly_overloaded  { background-color:#C0C000 }

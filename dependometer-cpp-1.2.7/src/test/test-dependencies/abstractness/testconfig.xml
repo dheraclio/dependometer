@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE testmetrics SYSTEM "../testconfig.dtd">
+
+<testmetrics>
+
+   <pagemetrics>
+   
+		<scanfile>project.html</scanfile>
+	
+		<metric>
+	 	 <name>number of components</name>
+	 	 <value>3</value>
+		</metric>
+	</pagemetrics>	
+		
+   <pagemetrics>
+   
+		<scanfile>compilation-unit-metrics.html</scanfile>
+	
+		<metric>
+	 	  <tablename>number of abstract types (Na)</tablename>
+	 	  <name>CSVFormat.cpp</name>
+	 	  <value>0</value>
+		</metric>
+	    <metric>
+	 	  <tablename>number of abstract types (Na)</tablename>
+	 	  <name>XMLFormat.cpp</name>
+	 	  <value>0</value>
+		</metric>
+		<metric>
+	 	  <tablename>number of abstract types (Na)</tablename>
+	 	  <name>BaseFormat.cpp</name>
+	 	  <value>1</value>
+		</metric>
+		
+		<metric>
+	 	  <tablename>number of concrete types</tablename>
+	 	  <name>CSVFormat.cpp</name>
+	 	  <value>1</value>
+		</metric>
+		
+		<metric>
+	 	  <tablename>number of concrete types</tablename>
+	 	  <name>XMLFormat.cpp</name>
+	 	  <value>1</value>
+		</metric>
+ 	
+ 	    <metric>
+	 	  <tablename>number of concrete types</tablename>
+	 	  <name>BaseFormat.cpp</name>
+	 	  <value>0</value>
+		</metric>
+		
+ 	</pagemetrics>
+
+ 	
+</testmetrics>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE testmetrics SYSTEM "../testconfig.dtd">
+
+<testmetrics>
+
+   <pagemetrics>
+   
+		<scanfile>project.html</scanfile>
+	
+		<metric>
+	 	 <name>number of components</name>
+	 	 <value>3</value>
+		</metric>
+ 	
+ 	</pagemetrics>
+ 	
+ 	<pagemetrics>
+   
+		<scanfile>package-metrics.html</scanfile>
+	
+		<metric>
+		 <tablename>relational cohesion (RC)</tablename>
+	 	 <name>geometry</name>
+	 	 <value>0.66</value>
+		</metric>
+ 	
+ 	    <metric>
+		 <tablename>number of types (Nc)</tablename>
+	 	 <name>geometry</name>
+	 	 <value>3</value>
+		</metric>
+		
+		<metric>
+		 <tablename>number of internal type relations</tablename>
+	 	 <name>geometry</name>
+	 	 <value>2</value>
+		</metric>
+		
+ 	</pagemetrics>
+ 	
+</testmetrics>

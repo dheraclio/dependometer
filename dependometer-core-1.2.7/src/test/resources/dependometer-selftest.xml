@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project SYSTEM "Configuration.dtd"> 
+
+<!-- 
+	name 
+		the project name appears in the reports
+	numberOfCyclesFeedbackOnConsole (default = "1")
+		Every time the configured number of cycles is reached you get an extra warning in your shell
+	numberOfCycleAnalysisProgressFeedbackOnConsole (default = "1")
+		Every time the remaining number of nodes was accordingly reduced you get an extra info in your shell
+	checkLayerDependencies (default = "true")
+	checkSubsystemDependencies (default = "true")
+		"true"	all dependencies are checked against the allowed dependencies (depends-upon node)
+		"false" no dependency check
+	checkPackageDependencies (default = "true")
+		"true" 	all package dependencies are checked against the allowed dependencies (only packages are checked that have a package description)
+		"false" no dependency check
+	cumulateLayerDependencies (default = "true")
+	cumulateSubsystemDependencies (default = "true")
+	cumulatePackageDependencies (default = "true")
+	cumulateCompilationUnitDependencies (default = "true")
+	cumulateTypeDependencies (default = "true")
+		"true"	cumulate dependencies
+		"false" no cumulation
+	maxLayerCycles (default = "0")            		
+	maxSubsystemCycles (default = "0")      		
+	maxPackageCycles (default = "0")          		
+	maxCompilationUnitCycles (default = "0")  		
+	maxTypeCycles (default = "0")             		
+		Configure the cycle analysis behavior to avoid an endlessly running process. As an alternativ you can start the
+		dependometer with the command 'java -jar dependomter.jar -file <your configuration>' and terminate the analyis when
+		ever you want with 'ctrl-c' in the shell. This is possible past the point where in the shell the message 'Terminate
+		running analysis with 'ctrl-c'!' appears. Past this point you have also a valid html output. Only the cycle analyis
+		output gets updated. With a corresponding refresh in your browser you can see the updated information.   
+		"-2" 	no analysis
+		"-1" 	cycle existence check
+		"0"	like "-1" plus detailed cycle participation (which elements participate in cycles?) and levelization
+		">0"	like 0" but with the provided upper limit for detected cycles (stops if 'n' cycles are reached)
+-->
+<project name="dependometer">
+	<!-- DIRECTORIES -->
+    <input dir="../../src/main/java"/>
+    <input dir="../../target/classes"/>
+    <!-- if checked out, include core to get complete selftest -->
+<!--    <input dir="../../../dependometer-core/src/main/java"/>-->
+<!--    <input dir="../../../dependometer-core/target/classes"/>-->
+
+	<!-- INPUT PACKAGE FILTER -->
+	<!-- include-package name=".*"/-->
+	<include-package name="com\.valtech\.source\.ag\..*"/> <!-- Include packages matching the given pattern ... - regular expressions JDK 1.4 -->
+	<include-package name="com\.valtech\.source\.dependometer\..*"/>
+	<!-- exclude-package name="default"/ -->
+	<!-- exclude-compilation-unit name=".*Test.*"/ --><!-- Exclude compilation units matching the given pattern ...  - regular expressions JDK 1.4 -->
+
+	<!-- 
+	Optional node for vertical slice analysis
+		checkDependencies (default = "true" - the 'checkSubsystemDependencies' attribute must also be set to "true")
+			"true"	all subsystem dependencies are 'cumulated' for the corresponding vertical slices the violations are shown
+			"false" no visualization of 'cumulated' violations
+		maxCycles (default = "0")
+			as above     
+		exclude-subsystem
+			specify which subsystems are not used for the vertical slice analysis (i.e. exclude the technical ones, normally
+			technically motivated vertical division of all layers is rare)
+	-->
+	<!--
+	<vertical-slices>
+		<exclude-subsystem name="user-interface::.*"/>
+		<exclude-subsystem name="application-general::.*"/>
+	</vertical-slices>
+	-->
+	<!-- OUTPUT LISTENER -->	    	
+   	<listener class="com.valtech.source.dependometer.ui.console.output.HtmlWriter" args="../../target/selftest-results"/>
+   	<listener class="com.valtech.source.dependometer.ui.console.output.CsvWriter" args="../../target/selftest-results/summary.csv"/>
+   	<listener class="com.valtech.source.dependometer.ui.console.output.DetailedCsvWriter" args="../../target/selftest-results/summary-detailed.csv"/>
+   	<!-- configure the detail level via an additional argument: layer, subsystem, package, compilation-unit, type (default = compilation-unit) -->
+	<listener class="com.valtech.source.dependometer.ui.console.output.ViolationReportCsvWriter" args="../../target/selftest-results/violation-report.csv type"/> 
+   	<!-- configure the detail level via an additional argument: layer, subsystem, package, compilation-unit, type (default = package) -->
+	<listener class="com.valtech.source.dependometer.ui.console.output.CycleParticipationReportCsvWriter" args="../../target/selftest-results/cycle-participation-report.csv type"/> 
+	<listener class="com.valtech.source.dependometer.ui.console.output.TypeDependencyCsvWriter" args="../../target/selftest-results/typedependencies.csv"/> 
+
+	<!-- ASSERTIONS -->
+	<assertion pattern="assert"/> <!-- Look for these assertion statements - regular expressions JDK 1.4 -->
+	
+	<!-- IGNORE -->
+	<!-- <ignore fromType=".*CycleTest.*" toType=".*CycleTest.*"/> --> <!-- Ignore matching type dependencies (Simulation) - regular expressions JDK 1.4 -->
+	
+	<!-- SKIP -->
+	<skip prefix="java\..*"/> <!-- Ignore the dependencies to JDK -->
+	<skip prefix="javax\..*"/>
+
+	<!-- REFACTORINGS -->
+	<!-- <refactor compilationUnit="com.valtech.source.dependometer.app.configprovider.filebased.xml.Refactoring" toPackage="com.valtech.source.dependometer.app.core.impl"/> --> <!-- Move compilation unit(s) to another package (Simulation) - n compilationUnits may be specified using the regular expressions from the JDK 1.4 -->
+	<!-- <refactor compilationUnit=".*Event" toPackage="com.valtech.source.dependometer.app.core.events"/> -->
+		
+	<!-- THRESHOLDS -->
+	<lower-threshold name="Project.NumberOfProjectInternalLayers" value="1"/> <!-- Need at least one defined layer -->
+	<lower-threshold name="Project.NumberOfDefinedLayerDependencies" value="1"/>
+	<lower-threshold name="Project.NumberOfProjectInternalSubsystems" value="1"/>
+	<lower-threshold name="Project.NumberOfDefinedSubsystemDependencies" value="1"/>
+	<lower-threshold name="Project.PercentageOfLayersWithRcNotLessThanOne" value="100"/>
+	<!-- lower-threshold name="Project.PercentageOfVerticalSlicesWithRcNotLessThanOne" value="100"/-->
+	<lower-threshold name="Project.PercentageOfSubsystemsWithRcNotLessThanOne" value="100"/>
+	<lower-threshold name="Project.PercentageOfPackagesWithRcNotLessThanOne" value="70"/>
+	<lower-threshold name="Project.NumberOfDefinedPackageDependencies" value="0"/>
+	<lower-threshold name="Project.AverageNumberOfAssertionsPerProjectInternalClass" value="5"/>
+	<lower-threshold name="Project.NumberOfProjectInternalTypes" value="1"/> <!-- At least one type was matched by the package filter and therefore analyzed -->
+	<upper-threshold name="Project.NumberOfProjectExternalSubsystems" value="5"/>
+	<upper-threshold name="Project.NumberOfProjectExternalLayers" value="1"/>
+	<upper-threshold name="Project.NumberOfNotImplementedSubsystems" value="0"/> <!-- All subsystems must have at least 1 assigned package -->
+	<upper-threshold name="Project.ACD" value="13.65"/>
+	<!-- upper-threshold name="Project.VerticalSliceCyclesExist" value="0"/-->
+	<upper-threshold name="Project.LayerCyclesExist" value="0"/>
+	<upper-threshold name="Project.SubsystemCyclesExist" value="0"/>
+	<upper-threshold name="Project.PackageCyclesExist" value="0"/>
+	<upper-threshold name="Project.MaxDepthOfPackageHierarchy" value="7"/>
+	<upper-threshold name="Project.NumberOfProjectExternalPackages" value="7"/>
+	<upper-threshold name="Project.NumberOfNotAssignedPackages" value="0"/>
+	<upper-threshold name="Project.NumberOfForbiddenEfferentPackageDependencies" value="0"/>
+	<upper-threshold name="Project.CompilationUnitCyclesExist" value="0"/>
+	<upper-threshold name="Project.TypeCyclesExist" value="0"/>
+	<upper-threshold name="Project.MaxDepthOfInheritance" value="5"/>
+
+	<!-- LOGICAL ARCHITECTURE -->
+	<layer name="user-interface">
+		<description>Contains the entry point to the application and renders the analysis output</description>
+   		<subsystem name="console">
+			<description>Provides the console based user interface</description>
+	       	<include-package name="com.valtech.source.dependometer.ui.console.*"/> <!-- Packages implementing the subsystem - regular expressions JDK 1.4 -->
+			<depends-upon name="application::core"/> <!-- Fully qualified name necessary -->
+			<depends-upon name="application::controller"/> <!-- Allowed subsystem dependency -->
+			<depends-upon name="application-general::command-line-parser"/>
+			<depends-upon name="application-general::utilities"/>
+            <depends-upon name="application-general::event-framework"/>
+			<depends-upon name="external::reflection"/>
+			<depends-upon name="external::logging"/>
+			<depends-upon name="external::xml-processing"/>
+		</subsystem>
+		<depends-upon name="application"/> <!-- Allowed layer dependency -->
+		<depends-upon name="application-general"/>
+		<depends-upon name="external"/>
+	</layer>
+	<layer name="application">
+		<description>Dependometer analysis functionality with standard configuration and type definition providers</description>
+		<subsystem name="controller">
+			<description>
+				Interpret the analysis feedback from specific dependency elements and dispatch events
+			</description>
+       		<include-package name="com.valtech.source.dependometer.app.controller.*"/>
+			<exclude-package name=".*specialclient.*"/>
+			<depends-upon name="application::core"/>
+			<depends-upon name="application-general::event-framework"/>
+			<depends-upon name="application-general::utilities"/>
+			<depends-upon name="external::logging"/>
+       	</subsystem>
+		<subsystem name="core">
+			<description>
+				Core dependometer functionality with definition of elements like layer, subsystem, ...
+			</description>
+       		<include-package name="com.valtech.source.dependometer.app.core.dependencyanalysis"/>
+       		<include-package name="com.valtech.source.dependometer.app.core.elements"/>
+       		<include-package name="com.valtech.source.dependometer.app.core.metrics"/>
+       		<include-package name="com.valtech.source.dependometer.app.core.provider"/>
+       		<include-package name="com.valtech.source.dependometer.app.core.queryinfo"/>
+       		<include-package name="com.valtech.source.dependometer.app.core.fts14"/>
+			<depends-upon name="application-general::utilities"/>
+            <depends-upon name="application-general::event-framework"/>
+			<depends-upon name="external::test-support"/>
+			<depends-upon name="external::xml-processing"/>
+			<depends-upon name="external::logging"/>
+		</subsystem>
+		<subsystem name="configuration-provider">
+			<description>Standard configuration provider - reads input from an xml configuration file</description>
+           	<include-package name="com.valtech.source.dependometer.app.configprovider.*"/>
+			<depends-upon name="application::core"/>
+			<depends-upon name="application-general::utilities"/>
+			<depends-upon name="external::xml-processing"/>
+			<depends-upon name="external::logging"/>
+            <depends-upon name="application-general::event-framework"/>
+		</subsystem>
+		<subsystem name="typedefinition-provider">
+			<description>Standard type definition provider - reads type definitions from java class and source files</description>
+           	<include-package name="com.valtech.source.dependometer.app.typedefprovider.*"/>
+			<depends-upon name="application::core"/>
+			<depends-upon name="application-general::utilities"/>
+			<depends-upon name="external::logging"/>
+			<depends-upon name="external::bytecode-analysis"/>
+            <depends-upon name="application-general::event-framework"/>
+		</subsystem>
+		<depends-upon name="application-general"/>
+		<depends-upon name="external"/>
+	</layer>
+   	<layer name="application-general">
+		<description>Contains a broad range of utility types that do not have dependencies to types from other layers</description>
+        	<subsystem name="event-framework">
+			<description>Framework for event definition and dispatching</description>
+           	<include-package name="com.valtech.source.ag.evf.*"/>
+			<depends-upon name="external::javadoc"/>
+			<depends-upon name="external::logging"/>
+		</subsystem>
+		<subsystem name="command-line-parser">
+			<description>Framework that provides functionality for parsing command line arguments</description>
+           	<include-package name="com.valtech.source.ag.cla"/>
+			<depends-upon name="external::logging"/>
+		</subsystem>
+		<subsystem name="utilities">
+			<description>Low level utility types</description>
+			<include-package name="com.valtech.source.dependometer.app.util"/>
+			<include-package name="com.valtech.source.ag.util"/>
+			<depends-upon name="external::logging"/>
+		</subsystem>
+		<depends-upon name="external"/>
+	</layer>
+
+	<layer name="external">
+		<description>APIs that do not belong to the project</description>
+		<subsystem name="reflection">
+			<include-package name="java.lang.reflect.*"/>
+		</subsystem>
+		<subsystem name="test-support">
+			<include-package name="junit.*"/>
+		</subsystem>
+   		<subsystem name="xml-processing">
+			<include-package name="javax.xml.parsers.*"/>
+			<include-package name="org.xml.sax.*"/>
+			<include-package name="com.sun.org.apache.xml.*"/>
+		</subsystem>
+		<subsystem name="javadoc">
+			<include-package name="com.sun.javadoc.*"/>
+		</subsystem>
+		<subsystem name="logging">
+			<include-package name="org.apache.log4j.*"/>
+		</subsystem>
+		<subsystem name="bytecode-analysis">
+			<include-package name="org.objectweb.asm.*"/>
+		</subsystem>
+	</layer>
+</project>

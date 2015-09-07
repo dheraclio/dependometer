@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- simple cycle exist between ClassB and ClassC-->
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Multiple Package Cycles</name>
+	<description>Contains multiple package cycles</description>
+	<type>
+		<name>sample1.ClassA</name>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample1.ClassB</name>
+		<property>class</property>
+		<depends-on>sample2.ClassE</depends-on>
+	</type>
+	<type>
+		<name>sample1.ClassC</name>
+		<property>class</property>
+		<depends-on>sample2.ClassD</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassD</name>
+		<property>class</property>
+		<depends-on>sample3.ClassH</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassE</name>
+		<property>class</property>
+		<depends-on>sample3.ClassG</depends-on>
+	</type>
+	<type>
+		<name>sample2.ClassF</name>
+		<property>class</property>
+		<depends-on>sample3.ClassI</depends-on>
+	</type>
+	<type>
+		<name>sample3.ClassG</name>
+		<property>class</property>
+		<depends-on>sample1.ClassA</depends-on>
+		<depends-on>sample2.ClassF</depends-on>
+	</type>
+	<type>
+		<name>sample3.ClassH</name>
+		<property>class</property>
+		<depends-on>sample1.ClassC</depends-on>
+	</type>
+	<type>
+		<name>sample3.ClassI</name>
+		<property>class</property>
+	</type>
+
+</project>

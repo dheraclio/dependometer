@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Subsystems and Layers</name>
+	<description>Contains multiple packages and subpackges usable in an architecture definition</description>
+	<type>
+		<name>one.ClassA</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>one.sub1.ClassB</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>one.sub2.ClassC</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>two.ClassD</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>two.sub1.ClassE</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>two.sub2.ClassF</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+		<type>
+		<name>two.sub2.subsub1.ClassG</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>external.sub1.ClassXYZ</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

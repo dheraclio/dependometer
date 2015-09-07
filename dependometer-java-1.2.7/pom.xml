@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.valtech.source.dependometer</groupId>
+    <artifactId>dependometer-java</artifactId>
+    <packaging>jar</packaging>
+    <version>1.2.7</version>
+    <name>Dependometer Java</name>    
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.source.version>1.7</java.source.version>
+        <java.target.version>1.7</java.target.version>
+        <dependometer.core.version>1.2.7</dependometer.core.version>
+    </properties>
+
+    <dependencies>        
+        <dependency>
+            <groupId>com.valtech.source.dependometer</groupId>
+            <artifactId>dependometer-core</artifactId>
+            <version>${dependometer.core.version}</version>
+        </dependency>        
+        <dependency>
+            <groupId>com.valtech.source.dependometer</groupId>
+            <artifactId>dependometer-core</artifactId>
+            <version>${dependometer.core.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>        
+        <dependency>
+            <groupId>com.valtech.source.dependometer</groupId>
+            <artifactId>dependometer-util</artifactId>     
+            <version>${dependometer.core.version}</version>                        
+        </dependency>        
+         <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <failOnError>true</failOnError>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-testdependencies</id>
+                        <!-- here the phase you need -->
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/test-dependencies</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/test-dependencies</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-misc</id>
+                        <!-- here the phase you need -->
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <includes>
+                                        <include>README</include>
+                                        <include>RELEASE_NOTES</include>
+                                        <include>LICENCE</include>
+                                        <include>NOTICE</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin> <!-- compile test-dependencies - howto with maven? -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <tasks>
+                                <property name="build.compiler" value="extJavac" />
+                                <!-- use the complete project classpath to get log4j -->
+                                <property name="compile_classpath" refid="maven.compile.classpath" />
+                                <!--
+                               									<echo message="classpath=${compile_classpath}" />
+                        								-->
+                                <javac srcdir="target/test-dependencies" classpath="${compile_classpath}" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <skipTests>none</skipTests>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin> 
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <classpathScope>compile</classpathScope>
+                    <arguments>
+                        <argument>-ea</argument>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>com.valtech.source.dependometer.ui.console.Main</argument>
+                        <argument>-file</argument>
+                        <argument>target/test-classes/dependometer-selftest.xml</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.valtech.source.dependometer.ui.console.Main</mainClass>
+                            <addClasspath>true</addClasspath>                          
+                            <classpathLayoutType>custom</classpathLayoutType>
+                            <customClasspathLayout>$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}</customClasspathLayout>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven</groupId>
+                        <artifactId>maven-archiver</artifactId>
+                        <version>2.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin> <!-- build binary distribution -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-4</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/bin.xml</descriptor>
+                        <descriptor>src/main/assembly/src.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+    <profiles>
+        <profile>
+            <id>release-profile</id>
+            <build>
+                <!--<finalName>${project.artifactId}-${project.version}</finalName>-->
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+   
+</project>

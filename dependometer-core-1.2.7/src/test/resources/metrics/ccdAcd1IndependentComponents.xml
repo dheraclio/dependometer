@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject One Class</name>
+	<description>Contains two non connected simple classes, CCD=n=2</description>
+	<type>
+		<name>sample1.ClassA</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample2.ClassB</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

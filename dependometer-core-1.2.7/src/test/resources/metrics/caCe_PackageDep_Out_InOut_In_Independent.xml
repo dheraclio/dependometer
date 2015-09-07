@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>Ca Ce - afferent efferent coupling</name>
+	<description></description>
+	<!-- independent package -->
+	<type>
+		<name>p0.C01</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<!--  dependencies to p2, package internal dependencies	-->
+	<type>
+		<name>p1.C11</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p2.C21</depends-on>
+		<depends-on>p2.C22</depends-on>
+	</type>
+	<type>
+		<name>p1.C12</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p1.C11</depends-on>
+	</type>
+	<!--  dependencies from p1 and dependencies to p3 -->
+	<type>
+		<name>p2.C21</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p3.C31</depends-on>
+	</type>
+	<type>
+		<name>p2.C22</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p3.C31</depends-on>
+	</type>
+	<type>
+		<name>p2.C23</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p3.C33</depends-on>
+	</type>
+	<!-- dependencies from p2 -->
+	<type>
+		<name>p3.C31</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>p3.C32</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>p3.C33</name>
+		<property>public</property>
+		<property>class</property>
+		<depends-on>p3.C31</depends-on>
+	</type>
+
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- simple cycle exist between ClassB and ClassC-->
+<project name="String" xsi:noNamespaceSchemaLocation="../test_scenario.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>TestProject Simple Cycle</name>
+	<description>Contains classes in different packages.</description>
+	<type>
+		<name>sample1.subpack1.ClassA</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample1.subpack2.ClassB</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample1.subpack2.ClassC</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+	<type>
+		<name>sample2.ClassD</name>
+		<property>public</property>
+		<property>class</property>
+	</type>
+</project>

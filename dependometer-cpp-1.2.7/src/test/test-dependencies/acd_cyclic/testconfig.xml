@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE testmetrics SYSTEM "../testconfig.dtd">
+
+<testmetrics>
+
+   <pagemetrics>
+   
+		<scanfile>project.html</scanfile>
+	
+		<metric>
+	 	 <name>number of components</name>
+	 	 <value>6</value>
+		</metric>
+	
+		<metric>
+	 	 <name>cumulative component dependency (CCD)</name>
+	 	 <value>26</value>
+		</metric>
+	
+		<metric>
+	 	 <name>average component dependency (ACD)</name>
+	 	 <value>4.33</value>
+		</metric>
+ 	
+ 	</pagemetrics>
+ 	
+ 	<pagemetrics>
+   
+		<scanfile>compilation-unit-levels.html</scanfile>
+	
+		<verifytext>compilation-units on level 1 (2)</verifytext>
+		
+ 	</pagemetrics>
+ 	
+ 	<pagemetrics>
+   
+		<scanfile>type-levels.html</scanfile>
+	
+		<verifytext>types on level 1 (2)</verifytext>
+		
+ 	</pagemetrics>
+ 	
+ 	
+</testmetrics>
