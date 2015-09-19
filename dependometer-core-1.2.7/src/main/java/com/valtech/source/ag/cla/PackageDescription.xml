@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE package SYSTEM "PackageDescription.dtd">
-
-<package name="de.valtech.ag.cla">
-	<description>Command line parser</description>
-	<dependsUpon package="org.apache.log4j"/>
-</package>

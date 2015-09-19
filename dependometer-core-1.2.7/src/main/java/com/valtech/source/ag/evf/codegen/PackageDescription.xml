@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE package SYSTEM "PackageDescription.dtd">
-
-<package name="de.valtech.ag.evf.codegen">
-	<description>Doclet based code generators</description>
-	<dependsUpon package="com.sun.javadoc"/>
-	<dependsUpon package="org.apache.log4j"/>
-</package>
