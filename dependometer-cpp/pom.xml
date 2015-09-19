@@ -7,14 +7,14 @@
     <artifactId>dependometer-cpp</artifactId>
     <packaging>jar</packaging>
     <name>Dependometer C++</name>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     <url>http://source.valtech.com/maven-sites/${project.artifactId}/index.html</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.source.version>1.7</java.source.version>
         <java.target.version>1.7</java.target.version>
-        <dependometer.core.version>1.2.7</dependometer.core.version>
+        <dependometer.core.version>1.2.8</dependometer.core.version>
         <maven.test.skip>true</maven.test.skip>
     </properties>
     
@@ -62,6 +62,7 @@
                 <version>2.0.2</version>
                 <configuration>
                     <failOnError>true</failOnError>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${java.source.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
