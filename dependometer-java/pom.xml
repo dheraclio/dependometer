@@ -7,14 +7,14 @@
     <groupId>com.valtech.source.dependometer</groupId>
     <artifactId>dependometer-java</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     <name>Dependometer Java</name>    
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.source.version>1.7</java.source.version>
         <java.target.version>1.7</java.target.version>
-        <dependometer.core.version>1.2.7</dependometer.core.version>
+        <dependometer.core.version>1.2.8</dependometer.core.version>
     </properties>
 
     <dependencies>        
@@ -29,17 +29,8 @@
             <version>${dependometer.core.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
-        </dependency>        
-        <dependency>
-            <groupId>com.valtech.source.dependometer</groupId>
-            <artifactId>dependometer-util</artifactId>     
-            <version>${dependometer.core.version}</version>                        
-        </dependency>        
-         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.8</version>
-        </dependency>
+        </dependency>       
+         
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -57,6 +48,7 @@
                 <version>2.0.2</version>
                 <configuration>
                     <failOnError>true</failOnError>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${java.source.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
@@ -150,8 +142,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.4.2</version>
                 <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <skipTests>none</skipTests>
+                    <testFailureIgnore>false</testFailureIgnore>                    
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
