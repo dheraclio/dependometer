@@ -277,8 +277,8 @@ public class SourceFileParser {
      *
      * @param fileEncoding file encoding of source code files
      */
-    public SourceFileParser(Charset fileCoding) {
-        this.fileEncoding = fileCoding;
+    public SourceFileParser(Charset fileEncoding) {
+        this.fileEncoding = fileEncoding;
     }
 
     /**

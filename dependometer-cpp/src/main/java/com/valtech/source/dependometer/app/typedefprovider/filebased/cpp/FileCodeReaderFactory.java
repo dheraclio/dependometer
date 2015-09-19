@@ -75,7 +75,7 @@ public class FileCodeReaderFactory implements ICodeReaderFactory {
          * The file path will be traversed from the highest directory and
          * matched against the entry cache, to quickly sort out non-existent
          * paths.
-         * @return
+         * @return Header for file
          *
          * @see
          * org.eclipse.cdt.core.parser.ICodeReaderCache#get(java.lang.String)
