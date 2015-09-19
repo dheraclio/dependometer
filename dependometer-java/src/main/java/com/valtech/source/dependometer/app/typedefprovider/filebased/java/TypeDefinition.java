@@ -20,11 +20,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.valtech.source.ag.util.StringArray;
 import com.valtech.source.dependometer.app.core.provider.IdentifierUtility;
 import com.valtech.source.dependometer.app.core.provider.MetricsProviderIf;
 import com.valtech.source.dependometer.app.core.provider.TypeDefinitionIf;
+import com.valtech.source.dependometer.util.StringArray;
 
 /**
  * @author Dietmar Menges (dietmar.menges@valtech.de)
