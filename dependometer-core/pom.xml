@@ -11,9 +11,9 @@
   <description>This module contains the (language-independent) core functionality of Dependometer.</description>
 
   <scm>
-    <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
-    <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
-    <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
+    <connection>scm:git:git@github.com/dheraclio/dependometer.git</connection>
+    <url>scm:git:git@github.com/dheraclio/dependometer.git</url>
+    <developerConnection>scm:git:git@github.com/dheraclio/dependometer.git</developerConnection>
   </scm>
 
   <properties>
