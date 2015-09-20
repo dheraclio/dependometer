@@ -2,12 +2,11 @@
 <project
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.valtech.source.dependometer</groupId>
-    <artifactId>dependometer-java</artifactId>
+    <artifactId>dependometer-java</artifactId>    
+    <version>1.2.9-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <version>1.2.8</version>
     <name>Dependometer Java</name>    
 
     <properties>
@@ -16,6 +15,12 @@
         <java.target.version>1.7</java.target.version>
         <dependometer.core.version>1.2.8</dependometer.core.version>
     </properties>
+    
+    <scm>
+        <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
+        <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
+        <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
+    </scm>
 
     <dependencies>        
         <dependency>
@@ -41,7 +46,11 @@
 
     <build>
         <plugins>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -110,8 +119,8 @@
                                 <!-- use the complete project classpath to get log4j -->
                                 <property name="compile_classpath" refid="maven.compile.classpath" />
                                 <!--
-                               									<echo message="classpath=${compile_classpath}" />
-                        								-->
+                                        <echo message="classpath=${compile_classpath}" />
+                                -->
                                 <javac srcdir="target/test-dependencies" classpath="${compile_classpath}" />
                             </tasks>
                         </configuration>
