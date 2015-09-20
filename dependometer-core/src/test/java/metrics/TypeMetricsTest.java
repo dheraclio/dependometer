@@ -1,6 +1,5 @@
 package metrics;
 
-import org.junit.Assume;
 
 import com.valtech.source.dependometer.app.core.elements.ParsedClass;
 import com.valtech.source.dependometer.app.core.elements.ParsedType;
@@ -60,7 +59,7 @@ public class TypeMetricsTest extends AbstractMetricsTest
 
       com.valtech.source.dependometer.app.core.elements.Package pack = com.valtech.source.dependometer.app.core.elements.Package
          .getPackage("sample");
-      Assume.assumeNotNull(pack);
+     assertNotNull(pack);
 
       // 2 abstract classes, 1 interface
       assertEquals("3", pack.getMetricByName("number of abstract types (Na)").getValueAsString());

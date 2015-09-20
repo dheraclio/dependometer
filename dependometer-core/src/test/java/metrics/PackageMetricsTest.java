@@ -1,7 +1,5 @@
 package metrics;
 
-import org.junit.Assume;
-
 public class PackageMetricsTest extends AbstractMetricsTest
 {
    public void testSimplePackage() throws Exception
@@ -26,17 +24,17 @@ public class PackageMetricsTest extends AbstractMetricsTest
 
       com.valtech.source.dependometer.app.core.elements.Package pack1 = com.valtech.source.dependometer.app.core.elements.Package
          .getPackage("sample1");
-      Assume.assumeNotNull(pack1);
+     assertNotNull(pack1);
       assertEquals("1", pack1.getMetricByName("depth of package hierarchy").getValueAsString());
 
       com.valtech.source.dependometer.app.core.elements.Package pack2 = com.valtech.source.dependometer.app.core.elements.Package
          .getPackage("sample2.sub2.subsub1");
-      Assume.assumeNotNull(pack2);
+     assertNotNull(pack2);
       assertEquals("3", pack2.getMetricByName("depth of package hierarchy").getValueAsString());
 
       com.valtech.source.dependometer.app.core.elements.Package pack3 = com.valtech.source.dependometer.app.core.elements.Package
          .getPackage("sample2.sub1");
-      Assume.assumeNotNull(pack3);
+     assertNotNull(pack3);
       assertEquals("2", pack3.getMetricByName("depth of package hierarchy").getValueAsString());
    }
 }
