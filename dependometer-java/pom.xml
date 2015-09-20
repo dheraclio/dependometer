@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.valtech.source.dependometer</groupId>
   <artifactId>dependometer-java</artifactId>
-  <version>1.2.9</version>
+  <version>1.2.10-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Dependometer Java</name>
 
@@ -11,7 +11,7 @@
     <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
     <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
     <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
-    <tag>dependometer-java-1.2.9</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
