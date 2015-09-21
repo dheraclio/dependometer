@@ -1,0 +1,9 @@
+#!/bin/bash
+mvn release:clean release:prepare -DdryRun=true -Darguments="-DskipTests=true"
+
+if [ $? != 0 ]; then
+ echo "Test preparation failed"
+ exit 1
+fi
+
+mvn release:clean release:prepare -Darguments="-DskipTests=true"
