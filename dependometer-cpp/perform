@@ -1,0 +1,2 @@
+#!/bin/bash
+mvn release:perform -Darguments="-DskipTests=true -Dmaven.deploy.skip=true"
