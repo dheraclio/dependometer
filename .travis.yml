@@ -1,3 +1,1 @@
-before_install: cd dependometer-core && mvn install -DskipTests=true)
-
-script: (cd dependometer-java && mvn test) 
+script: ./travis.sh
