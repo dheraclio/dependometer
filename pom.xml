@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.valtech.source.dependometer</groupId>
+  <artifactId>dependometer</artifactId>
+  <version>1.2.10-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Dependometer</name>
+
+  <scm>
+    <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
+    <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
+    <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <modules>
+    <module>dependometer-core</module>
+    <module>dependometer-java</module>
+    <module>dependometer-cpp</module>
+  </modules>
+</project>
